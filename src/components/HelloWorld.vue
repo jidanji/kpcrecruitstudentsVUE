@@ -9,8 +9,6 @@
       <Button type="success">success</Button>
       <Button type="none">none</Button>
       <Button type="link">link</Button>
-
-      12345678
     </div>
   </div>
 </template>
