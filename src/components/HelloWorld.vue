@@ -10,19 +10,14 @@
       <Button type="none">none</Button>
       <Button type="link">link</Button>
 
-      <Carousel>
-        <CarouselItem>1</CarouselItem>
-        <CarouselItem>2</CarouselItem>
-        <CarouselItem>3</CarouselItem>
-        <CarouselItem>4</CarouselItem>
-      </Carousel>
+      
     </div>
   </div>
 </template>
 
 <script>
 import Button from "kpc-vue/components/button";
-import { Carousel, CarouselItem } from "kpc-vue/components/carousel";
+ 
 export default {
   name: "HelloWorld",
   props: {
@@ -30,8 +25,7 @@ export default {
   },
   components: {
     Button,
-    Carousel,
-    CarouselItem,
+  
   },
 };
 </script>

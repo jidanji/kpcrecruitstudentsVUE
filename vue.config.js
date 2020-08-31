@@ -8,6 +8,7 @@ const baseUrl = '/';
 const CompressionPlugin = require('compression-webpack-plugin')
 
 module.exports = {
+
     devServer: {
         port: 1234,
         disableHostCheck: true,
@@ -48,6 +49,11 @@ module.exports = {
     },
     //////
     configureWebpack: {
+        resolve: {
+            alias: {
+                'kpc-vue': 'kpc-vue/@stylus',
+            }
+        },
         plugins: [
             new webpack.ProvidePlugin({
                 $: 'jquery',
@@ -63,7 +69,19 @@ module.exports = {
             })
             ////////平时注释
         ],
-        module: {}
+        module: {
+            rules: [{
+                test: /\.styl$/,
+                use: [{
+                    loader: 'stylus-loader',
+                    options: {
+                        'include css': true,
+                        'resolve url': true,
+                        'import': '~kpc-vue/@stylus/styles/themes/ksyun/index.styl'
+                    }
+                }]
+            }]
+        }
     }
     //////
 }
