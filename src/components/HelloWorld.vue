@@ -2,7 +2,7 @@
   <div>
     <div>
       <Button>default</Button>
-      <Button type="primary">primary</Button>
+      <Button type="primary">primary134454</Button>
       <Button type="secondary">secondary</Button>
       <Button type="warning">warning</Button>
       <Button type="danger">danger</Button>
@@ -10,7 +10,7 @@
       <Button type="none">none</Button>
       <Button type="link">link</Button>
 
-      
+      12345678
     </div>
   </div>
 </template>
