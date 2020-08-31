@@ -7,7 +7,7 @@ export async function request(url, options) {
     try {
         const axiosReponse = await axios(url, options);
         await checkStatus(axiosReponse);
-        const retData = await dealResponse(axiosReponse)
+        const retData = await dealResponse106(axiosReponse)
         return retData;
     } catch (error) {
         return Promise.reject(new Error(error.toString()));
@@ -36,6 +36,24 @@ function checkStatus(response) {
  * @param {Object} response 响应体 
  */
 function dealResponse(response) {
+    return new Promise((resolve, reject) => {
+        const resultData = response.data;
+        if (resultData.responseCode === '00001') {
+            resolve(resultData.responseData);
+        } else {
+            const responseDesc = resultData.responseText ? resultData.responseText : '后台处理数据错误，代码：' + resultData.responseCode;
+            const error = new Error(responseDesc)
+            reject(error);
+        }
+    });
+}
+
+/**
+ * 生产环境下对接口返回的参数进行解密
+ * 
+ * @param {Object} response 响应体 
+ */
+function dealResponse106(response) {
     return new Promise((resolve, reject) => {
         const resultData = response.data;
         if (resultData.responseCode === '00001') {
