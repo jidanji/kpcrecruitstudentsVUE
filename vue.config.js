@@ -13,6 +13,13 @@ module.exports = {
         port: 1234,
         disableHostCheck: true,
         proxy: {
+            '/api': {
+                target: 'http://106.12.183.239',
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/api': ''
+                }
+            },
             '/ssomanager': {
                 target: 'http://120.71.148.127:9892/sso-manager',
                 pathRewrite: {
