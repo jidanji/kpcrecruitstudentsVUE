@@ -37,11 +37,11 @@
             </MenuItem>
           </Menu>
         </Col>
-        <Col span="20">12345678</Col>
+        <Col span="20"><router-view /></Col>
       </Row>
     </div>
 
-    <router-view />
+    
   </div>
 </template>
 <script>
