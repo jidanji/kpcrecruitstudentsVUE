@@ -1,36 +1,67 @@
   <template>
   <div>
+    <div id="a1" class="a1">
+      <Form ref="form" labelWidth="80" layout="inline" @submit="searchClick">
+        <FormItem  label="学生姓名" model="searchForm.studentName">
+          <Input placeholder="请输入学生姓名" v-model="searchForm.studentName" />
+        </FormItem>
+        <FormItem label="身份证号" model="searchForm.studentIDCard">
+          <Input placeholder="请输入身份证号" v-model="searchForm.studentIDCard" />
+        </FormItem>
+
+          <FormItem>
+            <Button type="primary" htmlType="submit">查询</Button>
+        </FormItem>
+      </Form>
+    </div>
+
+    <div id="a2" class="a2"
+    >
+      <Button type="primary">录入学生信息</Button>
+    </div>
+
+
     <Table
-      :fixHeader="480"
+      :fixHeader="elCss.leftHeight"
       :loading="loadingStatus.tableLoading"
       :data="dataSource.studentsArray"
       resizable
       :stripe="true"
-      ref="table"
+      ref="multipleTable"
     >
-        <TableColumn minWidth='40' key="kop" title="序号" :template='setIndex' />
+      <TableColumn minWidth="40" key="kop" title="序号" :template="setIndex" />
 
-      <TableColumn minWidth='70' key="StudentName" title="学生姓名" />
-       
-      <TableColumn minWidth='140' key="StudentIDCard" title="身份证号码" />
-      <TableColumn minWidth='80' key="StudentType" title="学生性质"   />
+      <TableColumn minWidth="70" key="StudentName" title="学生姓名" />
 
-      <TableColumn minWidth='100' key="UserPhone" title="联系方式" />
-      <TableColumn minWidth='100' key="UserName" title="推荐人" />
+      <TableColumn minWidth="140" key="StudentIDCard" title="身份证号码" />
+      <TableColumn minWidth="80" key="StudentType" title="学生性质" />
 
-      <TableColumn minWidth='150' key="UserDeptName" title="推荐人部门" />
+      <TableColumn minWidth="100" key="UserPhone" title="联系方式" />
+      <TableColumn minWidth="100" key="UserName" title="推荐人" />
 
-      <TableColumn minWidth='150' key="kop1" title="上传时间" fixed="right"  :template='datetimeFMT'/>
+      <TableColumn minWidth="150" key="UserDeptName" title="推荐人部门" />
+
+      <TableColumn minWidth="150" key="kop1" title="上传时间" fixed="right" :template="datetimeFMT" />
     </Table>
 
-    <Pagination :total="200" ref="__test" @change="_onChange" />
+    <Pagination :total="pager.recordsTotal"   @change="currentChange" />
   </div>
 </template>
 
 <script>
 import { Table, TableColumn } from "kpc-vue/components/table";
 
+import { Form, FormItem } from "kpc-vue/components/form";
+import { Input } from "kpc-vue/components/input";
+
+import Message from "kpc-vue/components/message";
+
 import Pagination from "kpc-vue/components/pagination";
+
+import { Row, Col } from "kpc-vue/components/grid";
+
+import {ButtonGroup, Button} from 'kpc-vue/components/button';
+
 import {
   fetchStudent,
   addStudent,
@@ -47,6 +78,12 @@ export default {
     Table,
     TableColumn,
     Pagination,
+    Form,
+    FormItem,
+    Input,
+    Row,
+    Col,
+    Button
   },
   data() {
     var defaultValue = {
@@ -156,7 +193,7 @@ export default {
         $(window).height() -
         $("#a1").outerHeight(true) -
         $("#a2").outerHeight(true) -
-        110;
+        120;
     },
     batchOps() {
       alert("批量操作");
@@ -237,12 +274,12 @@ export default {
     searchClick() {
       this.pager.currentPage = 1;
       this.getStudentArray();
-      this.$refs.multipleTable.bodyWrapper.scrollTop = 0;
+      this.$refs.multipleTable.scrollToRowByIndex(0)
     },
-    currentChange(c) {
+    currentChange({current:c, limit}) {
       this.pager.currentPage = c;
       this.getStudentArray();
-      this.$refs.multipleTable.bodyWrapper.scrollTop = 0;
+       this.$refs.multipleTable.scrollToRowByIndex(0)
     },
     sizeChange(c) {
       this.pager.pageSize = c;
@@ -334,68 +371,18 @@ export default {
     datetimeFMT(data, index) {
       return new DateFMT().datetimeFormate(data.UpdateTime);
     },
-    setIndex(data,index) {
+    setIndex(data, index) {
       return index + 1 + (this.pager.currentPage - 1) * this.pager.pageSize;
     },
   },
 };
 </script>
 
-<style>
-.xdf-dialog .el-dialog__header,
-.xdf-dialog .el-dialog__footer,
-.xdf-detaildialog .el-dialog__header,
-.xdf-detaildialog .el-dialog__footer {
-  padding: 7px !important;
-  background: #eee;
-}
-
-.xdf-dialog .el-dialog__headerbtn,
-.xdf-detaildialog .el-dialog__headerbtn {
-  top: 10px;
-  right: 10px;
-}
-
-.xdf-dialog .el-row {
-  margin-bottom: 0px;
-}
-
-.xdf-dialog .el-dialog__body,
-.xdf-detaildialog .el-dialog__body {
-  padding: 20px;
-}
-.xdf-dialog .el-select {
-  width: 100%;
-}
-.xdf-dialog .el-dialog__header {
-  background: red important;
-}
-
-.xdf-detaildialog hr {
-  border: 1px solid #eee;
-  margin-left: -20px;
-  margin-right: -20px;
-}
-
-.xdf-detaildialog .el-row {
-  margin-bottom: 0;
-}
-
-.xdf-detaildialog .el-row div {
-  line-height: 30px;
-  height: 30px;
-}
-
-.xdf-detaildialog .detailTitle {
-  color: #000000;
-  letter-spacing: 1px;
-}
-
-.xdf-detaildialog .detailContent {
-  color: #606266;
-  font-weight: bold;
-  letter-spacing: 0.5px;
-}
+<style lang="stylus">
+.a1
+  padding-top 10px
+.a2
+ padding-bottom 10px
 </style>
 
 
