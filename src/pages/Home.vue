@@ -44,8 +44,8 @@
       <TableColumn minWidth="150" key="kop1" title="上传时间" fixed="right" :template="datetimeFMT" />
     </Table>
 
-    <Pagination :total="pager.recordsTotal"   @change="currentChange" />
-  </div>
+    <Pagination  :current="pager.currentPage" :total="pager.recordsTotal"   @change="currentChange" />
+  </div> 
 </template>
 
 <script>
