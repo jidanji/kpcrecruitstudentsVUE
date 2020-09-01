@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div id="mainTitle">银河对接项目</div>
+    <div id="mainTitle">银河计费系统对接项目</div>
     <div id="mainContent">
       <Row>
         <Col span="4">
@@ -74,8 +74,8 @@ export default {
 
 <style lang="stylus">
 #mainTitle {
-  background: #000000;
-  color: #ffffff;
+  background: #a8cbef !important;
+  color: #2b2b2b;
   text-align: left;
   height: 50px;
   line-height: 50px;

@@ -1,22 +1,36 @@
   <template>
   <div>
-    <Table :loading='loadingStatus.tableLoading' :data="dataSource.studentsArray" resizable :height='200'>
-      <TableColumn key="StudentName" title="学生姓名" />
-      <TableColumn key="StudentIDCard" title="身份证号码" />
-      <TableColumn key="StudentType" title="学生性质" />
+    <Table
+      :fixHeader="480"
+      :loading="loadingStatus.tableLoading"
+      :data="dataSource.studentsArray"
+      resizable
+      :stripe="true"
+      ref="table"
+    >
+        <TableColumn minWidth='40' key="kop" title="序号" :template='setIndex' />
 
-      <TableColumn key="UserPhone" title="联系方式" />
-      <TableColumn key="UserName" title="推荐人" />
+      <TableColumn minWidth='70' key="StudentName" title="学生姓名" />
+       
+      <TableColumn minWidth='140' key="StudentIDCard" title="身份证号码" />
+      <TableColumn minWidth='80' key="StudentType" title="学生性质"   />
 
-      <TableColumn key="UserDeptName" title="推荐人部门" />
+      <TableColumn minWidth='100' key="UserPhone" title="联系方式" />
+      <TableColumn minWidth='100' key="UserName" title="推荐人" />
 
-      <TableColumn key="UpdateTime" title="上传时间" />
+      <TableColumn minWidth='150' key="UserDeptName" title="推荐人部门" />
+
+      <TableColumn minWidth='150' key="kop1" title="上传时间" fixed="right"  :template='datetimeFMT'/>
     </Table>
+
+    <Pagination :total="200" ref="__test" @change="_onChange" />
   </div>
 </template>
 
 <script>
 import { Table, TableColumn } from "kpc-vue/components/table";
+
+import Pagination from "kpc-vue/components/pagination";
 import {
   fetchStudent,
   addStudent,
@@ -32,6 +46,7 @@ export default {
   components: {
     Table,
     TableColumn,
+    Pagination,
   },
   data() {
     var defaultValue = {
@@ -77,7 +92,7 @@ export default {
       pager: {
         recordsTotal: 0,
         currentPage: 1,
-        pageSize: 500,
+        pageSize: 50,
       },
       initForm: { ...defaultValue },
       editForm: { ...defaultValue },
@@ -135,6 +150,7 @@ export default {
   },
 
   methods: {
+    _onChange() {},
     autoHeight() {
       this.elCss.leftHeight =
         $(window).height() -
@@ -315,10 +331,10 @@ export default {
         this.$message.error(err.toString());
       }
     },
-    datetimeFMT(row, column, cellValue, index) {
-      return new DateFMT().datetimeFormate(cellValue);
+    datetimeFMT(data, index) {
+      return new DateFMT().datetimeFormate(data.UpdateTime);
     },
-    setIndex(row, column, cellValue, index) {
+    setIndex(data,index) {
       return index + 1 + (this.pager.currentPage - 1) * this.pager.pageSize;
     },
   },
