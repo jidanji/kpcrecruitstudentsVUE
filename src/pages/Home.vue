@@ -17,7 +17,20 @@
     </div>
 
     <div id="a2" class="a2">
+       
       <Button type="primary" @click="addDialog">录入学生信息</Button>
+   
+    <Tooltip content="确定删除？"
+            confirm
+            theme="light"
+            trigger="click"
+            @ok="ok"
+            @cancel="cancel"
+            ref="__test"
+        >
+            <Button>删除</Button>
+        </Tooltip>
+        
     </div>
 
     <Table
@@ -45,7 +58,16 @@
       <TableColumn align="center" key="action" title="操作" width="200" fixed="right">
         <template slot="template">
           <Button @click.stop size="small" class="btn-maring" ghost type="primary">修改</Button>
-          <Tooltip content="确定删除？" confirm theme="light" trigger="click.stop" ref="__test">
+          <Tooltip content="确定删除？"
+            confirm
+            theme="light"
+            trigger="click"
+            @ok="ok"
+            @cancel="cancel"
+            ref="__test"
+
+          container='body'
+        >
             <Button size="small" class="btn-maring" type="danger" ghost>删除</Button>
           </Tooltip>
         </template>
@@ -77,6 +99,8 @@ import { Row, Col } from "kpc-vue/components/grid";
 import { ButtonGroup, Button } from "kpc-vue/components/button";
 import Dialog from "kpc-vue/components/dialog";
 
+import Tooltip from 'kpc-vue/components/tooltip';
+
 import {
   fetchStudent,
   addStudent,
@@ -90,6 +114,7 @@ import $ from "jquery";
 
 export default {
   components: {
+    Tooltip,
     Table,
     TableColumn,
     Pagination,
