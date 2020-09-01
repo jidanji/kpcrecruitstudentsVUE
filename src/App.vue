@@ -4,7 +4,7 @@
     <div id="mainContent">
       <Row>
         <Col span="4">
-          <Menu theme='light' :expandedKeys.sync="expandedKeys" :selectedKey.sync="selectedKey">
+          <Menu theme="light" :expandedKeys.sync="expandedKeys" :selectedKey.sync="selectedKey">
             <MenuItem key="1" @select="onSelect">
               <Icon class="ion-flag" />menu 1
               <Menu>
@@ -37,11 +37,11 @@
             </MenuItem>
           </Menu>
         </Col>
-        <Col span="20"><router-view /></Col>
+        <Col span="20">
+          <router-view />
+        </Col>
       </Row>
     </div>
-
-    
   </div>
 </template>
 <script>
@@ -73,6 +73,20 @@ export default {
 </script>
 
 <style lang="stylus">
+::-webkit-scrollbar {
+  width: 6px !important;
+  height: 6px !important;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 0 !important;
+  background: #908c8c !important;
+}
+
+::-webkit-scrollbar-track {
+  background: #eeeeee !important;
+}
+
 #mainTitle {
   background: #a8cbef !important;
   color: #2b2b2b;

@@ -1,25 +1,24 @@
   <template>
   <div>
+    <Dialog v-model="vStatus.dialogEditFormVisible" title="Dialog Title" ref="__demo">Dialog Body</Dialog>
     <div id="a1" class="a1">
       <Form ref="form" labelWidth="80" layout="inline" @submit="searchClick">
-        <FormItem  label="学生姓名" model="searchForm.studentName">
+        <FormItem label="学生姓名" model="searchForm.studentName">
           <Input placeholder="请输入学生姓名" v-model="searchForm.studentName" />
         </FormItem>
         <FormItem label="身份证号" model="searchForm.studentIDCard">
           <Input placeholder="请输入身份证号" v-model="searchForm.studentIDCard" />
         </FormItem>
 
-          <FormItem>
-            <Button type="primary" htmlType="submit">查询</Button>
+        <FormItem>
+          <Button type="primary" htmlType="submit">查询</Button>
         </FormItem>
       </Form>
     </div>
 
-    <div id="a2" class="a2"
-    >
-      <Button type="primary">录入学生信息</Button>
+    <div id="a2" class="a2">
+      <Button type="primary" @click="addDialog">录入学生信息</Button>
     </div>
-
 
     <Table
       :fixHeader="elCss.leftHeight"
@@ -29,7 +28,7 @@
       :stripe="true"
       ref="multipleTable"
     >
-      <TableColumn minWidth="40" key="kop" title="序号" :template="setIndex" />
+      <TableColumn minWidth="50" key="kop" title="序号" :template="setIndex" />
 
       <TableColumn minWidth="70" key="StudentName" title="学生姓名" />
 
@@ -41,11 +40,21 @@
 
       <TableColumn minWidth="150" key="UserDeptName" title="推荐人部门" />
 
-      <TableColumn minWidth="150" key="kop1" title="上传时间" fixed="right" :template="datetimeFMT" />
+      <TableColumn minWidth="150" key="kop1" title="上传时间" :template="datetimeFMT" />
+
+      <TableColumn align="center" key="action" title="操作" width="200" fixed="right">
+        <template slot="template">
+          <Button @click.stop size="small" class="btn-maring" ghost type="primary">修改</Button>
+          <Tooltip   content="确定删除？" confirm theme="light" trigger="click.stop" ref="__test">
+            <Button   size="small" class="btn-maring" type="danger" ghost>删除</Button>
+          </Tooltip>
+        </template>
+      </TableColumn>
     </Table>
 
-    <Pagination  :current="pager.currentPage" :total="pager.recordsTotal"   @change="currentChange" />
-  </div> 
+    <Pagination :limits="[2,10,15,100, 200, 300, 400]"
+        :limit="pager.pageSize" :current="pager.currentPage" :total="pager.recordsTotal" @change="currentChange" />
+  </div>
 </template>
 
 <script>
@@ -60,7 +69,8 @@ import Pagination from "kpc-vue/components/pagination";
 
 import { Row, Col } from "kpc-vue/components/grid";
 
-import {ButtonGroup, Button} from 'kpc-vue/components/button';
+import { ButtonGroup, Button } from "kpc-vue/components/button";
+import Dialog from "kpc-vue/components/dialog";
 
 import {
   fetchStudent,
@@ -83,7 +93,8 @@ export default {
     Input,
     Row,
     Col,
-    Button
+    Button,
+    Dialog,
   },
   data() {
     var defaultValue = {
@@ -225,9 +236,6 @@ export default {
       this.formOp = "add";
       Object.assign(this.editForm, this.initForm);
       this.vStatus.dialogEditFormVisible = true;
-      this.$nextTick(() => {
-        this.$refs["ruleForm"].resetFields();
-      });
     },
     async deleteDialog(row) {
       try {
@@ -274,12 +282,12 @@ export default {
     searchClick() {
       this.pager.currentPage = 1;
       this.getStudentArray();
-      this.$refs.multipleTable.scrollToRowByIndex(0)
+      this.$refs.multipleTable.scrollToRowByIndex(0);
     },
-    currentChange({current:c, limit}) {
+    currentChange({ current: c, limit }) {
       this.pager.currentPage = c;
       this.getStudentArray();
-       this.$refs.multipleTable.scrollToRowByIndex(0)
+      this.$refs.multipleTable.scrollToRowByIndex(0);
     },
     sizeChange(c) {
       this.pager.pageSize = c;
@@ -379,10 +387,20 @@ export default {
 </script>
 
 <style lang="stylus">
-.a1
-  padding-top 10px
-.a2
- padding-bottom 10px
+.a1 {
+  padding-top: 10px;
+}
+
+.a2 {
+  padding-bottom: 10px;
+}
+
+.btn-maring {
+  margin-right: 10px;
+}
+
+.k-form-item 
+  margin 0 0 10px 0 !important;
 </style>
 
 
