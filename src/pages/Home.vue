@@ -45,15 +45,20 @@
       <TableColumn align="center" key="action" title="操作" width="200" fixed="right">
         <template slot="template">
           <Button @click.stop size="small" class="btn-maring" ghost type="primary">修改</Button>
-          <Tooltip   content="确定删除？" confirm theme="light" trigger="click.stop" ref="__test">
-            <Button   size="small" class="btn-maring" type="danger" ghost>删除</Button>
+          <Tooltip content="确定删除？" confirm theme="light" trigger="click.stop" ref="__test">
+            <Button size="small" class="btn-maring" type="danger" ghost>删除</Button>
           </Tooltip>
         </template>
       </TableColumn>
     </Table>
 
-    <Pagination :limits="[2,10,15,100, 200, 300, 400]"
-        :limit="pager.pageSize" :current="pager.currentPage" :total="pager.recordsTotal" @change="currentChange" />
+    <Pagination
+      :limits="[2,10,15,100, 200, 300, 400]"
+      :limit="pager.pageSize"
+      :current="pager.currentPage"
+      :total="pager.recordsTotal"
+      @change="currentChange"
+    />
   </div>
 </template>
 
@@ -285,9 +290,13 @@ export default {
       this.$refs.multipleTable.scrollToRowByIndex(0);
     },
     currentChange({ current: c, limit }) {
-      this.pager.currentPage = c;
-      this.getStudentArray();
-      this.$refs.multipleTable.scrollToRowByIndex(0);
+      if (this.pager.currentPage != c) {
+        this.pager.currentPage = c;
+        this.getStudentArray();
+        this.$refs.multipleTable.scrollToRowByIndex(0);
+      }else{
+        this.sizeChange(limit);
+      }
     },
     sizeChange(c) {
       this.pager.pageSize = c;
@@ -399,8 +408,9 @@ export default {
   margin-right: 10px;
 }
 
-.k-form-item 
-  margin 0 0 10px 0 !important;
+.k-form-item {
+  margin: 0 0 10px 0 !important;
+}
 </style>
 
 
