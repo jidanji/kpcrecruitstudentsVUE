@@ -1,76 +1,86 @@
   <template>
   <div>
-    <Dialog   v-model="vStatus.dialogEditFormVisible" title="录入学生信息" ref="__demo">
-      <Form ref="form" labelWidth="200">
-        <FormItem label="Input" model="model.input" :rules="{required: true}">
-          <Input v-model="model.input" />
-        </FormItem>
-        <FormItem
-          label="Select"
-          model="model.select"
-          :rules="{required: true}"
-          :messages="{required: '必须选择'}"
-        >
-          <Select v-model="model.select">
-            <Option value="Javascript">Javascript</Option>
-            <Option value="PHP">PHP</Option>
-            <Option value="C++">C++</Option>
-          </Select>
-        </FormItem>
-        <FormItem
-          label="Checkbox"
-          model="model.checkbox"
-          :rules="{required: true, maxLength: 2}"
-          :messages="{required: '必须选择'}"
-        >
-          <Checkbox trueValue="Javascript" v-model="model.checkbox">Javascript</Checkbox>
-          <Checkbox trueValue="PHP" v-model="model.checkbox">PHP</Checkbox>
-          <Checkbox trueValue="C++" v-model="model.checkbox">C++</Checkbox>
-        </FormItem>
-        <FormItem
-          label="Radio"
-          model="model.radio"
-          :rules="{required: true}"
-          :messages="{required: '必须选择'}"
-        >
-          <Radio trueValue="Javascript" v-model="model.radio">Javascript</Radio>
-          <Radio trueValue="PHP" v-model="model.radio">PHP</Radio>
-          <Radio trueValue="C++" v-model="model.radio">C++</Radio>
-        </FormItem>
-        <FormItem
-          label="Radio ButtonGroup"
-          model="model.buttonGroup"
-          :rules="{required: true}"
-          :messages="{required: '必须选择'}"
-        >
-          <ButtonGroup checkType="radio" v-model="model.buttonGroup">
-            <Button value="Javascript">Javascript</Button>
-            <Button value="PHP">PHP</Button>
-            <Button value="C++">C++</Button>
-          </ButtonGroup>
-        </FormItem>
-        <FormItem label="Switch" model="model.switch">
-          <KSwitch v-model="model.switch" />
-        </FormItem>
-        <FormItem model="model.slider" :rules="{required: true, min: 1}" label="Slider">
-          <Slider v-model="model.slider" :isShowInput="false" />
-        </FormItem>
-        <FormItem model="model.date" :rules="{required: true}" label="Datepicker">
-          <Datepicker v-model="model.date" />
-        </FormItem>
-        <FormItem label="Textarea" model="model.textarea" :rules="{required: true}">
-          <Input type="textarea" v-model="model.textarea" />
-        </FormItem>
-        <FormItem label="Password" model="model.password" :rules="{required: true}">
-          <Input type="password" v-model="model.password" />
-        </FormItem>
-        <FormItem
-          label="Confirm Password"
-          model="model.confirmPassword"
-          :rules="{required: true, equalTo: 'model.password'}"
-        >
-          <Input type="password" v-model="model.confirmPassword" />
-        </FormItem>
+    <Dialog
+      :closable="false"
+      :escClosable="false"
+      v-model="vStatus.dialogEditFormVisible"
+      title="录入学生信息"
+      ref="__demo"
+    >
+      <Form ref="form" labelWidth="120">
+        <Row>
+          <Col span="12">
+            <FormItem label="Input" model="model.input" :rules="{required: true}">
+              <Input v-model="model.input" />
+            </FormItem>
+          </Col>
+          <Col span="12">
+            <FormItem
+              label="Select"
+              model="model.select"
+              :rules="{required: true}"
+              :messages="{required: '必须选择'}"
+            >
+              <Select v-model="model.select">
+                <Option value="Javascript">Javascript</Option>
+                <Option value="PHP">PHP</Option>
+                <Option value="C++">C++</Option>
+              </Select>
+            </FormItem>
+          </Col>
+        </Row>
+        <Row>
+          <Col span="12">
+            <FormItem
+              label="Checkbox"
+              model="model.checkbox"
+              :rules="{required: true, maxLength: 2}"
+              :messages="{required: '必须选择'}"
+            >
+              <Checkbox trueValue="Javascript" v-model="model.checkbox">Javascript</Checkbox>
+              <Checkbox trueValue="PHP" v-model="model.checkbox">PHP</Checkbox>
+              <Checkbox trueValue="C++" v-model="model.checkbox">C++</Checkbox>
+            </FormItem>
+          </Col>
+          <Col span="12">
+            <FormItem
+              label="Radio"
+              model="model.radio"
+              :rules="{required: true}"
+              :messages="{required: '必须选择'}"
+            >
+              <Radio trueValue="Javascript" v-model="model.radio">Javascript</Radio>
+              <Radio trueValue="PHP" v-model="model.radio">PHP</Radio>
+              <Radio trueValue="C++" v-model="model.radio">C++</Radio>
+            </FormItem>
+          </Col>
+        </Row>
+        <Row>
+          <Col span="12">
+            <FormItem
+              label="Radio ButtonGroup"
+              model="model.buttonGroup"
+              :rules="{required: true}"
+              :messages="{required: '必须选择'}"
+            >
+              <ButtonGroup checkType="radio" v-model="model.buttonGroup">
+                <Button value="Javascript">Javascript</Button>
+                <Button value="PHP">PHP</Button>
+                <Button value="C++">C++</Button>
+              </ButtonGroup>
+            </FormItem>
+          </Col>
+          <Col span="12">
+            <FormItem
+              label="Confirm Password"
+              model="model.confirmPassword"
+              :rules="{required: true, equalTo: 'model.password'}"
+            >
+              <Input type="password" v-model="model.confirmPassword" />
+            </FormItem>
+          </Col>
+        </Row>
+
         <FormItem>
           <Button type="primary" htmlType="submit" @click="handleSubmit">提交</Button>
           <Button style="margin-left: 20px" @click="reset">重置</Button>
