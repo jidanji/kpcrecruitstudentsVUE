@@ -17,20 +17,7 @@
     </div>
 
     <div id="a2" class="a2">
-       
       <Button type="primary" @click="addDialog">录入学生信息</Button>
-   
-    <Tooltip content="确定删除？"
-            confirm
-            theme="light"
-            trigger="click"
-            @ok="ok"
-            @cancel="cancel"
-            ref="__test"
-        >
-            <Button>删除</Button>
-        </Tooltip>
-        
     </div>
 
     <Table
@@ -56,8 +43,8 @@
       <TableColumn minWidth="150" key="kop1" title="上传时间" :template="datetimeFMT" />
 
       <TableColumn align="center" key="action" title="操作" width="200" fixed="right">
-        <template slot="template">
-          <Button @click.stop size="small" class="btn-maring" ghost type="primary">修改</Button>
+        <template slot="template" slot-scope="data">
+          <Button @click.stop='editDialog(data)' size="small" class="btn-maring" ghost type="primary">修改</Button>
           <Tooltip content="确定删除？"
             confirm
             theme="light"
