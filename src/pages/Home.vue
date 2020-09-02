@@ -1,6 +1,6 @@
   <template>
   <div>
-    <Dialog v-model="vStatus.dialogEditFormVisible" title="录入学生信息" ref="__demo">
+    <Dialog   v-model="vStatus.dialogEditFormVisible" title="录入学生信息" ref="__demo">
       <Form ref="form" labelWidth="200">
         <FormItem label="Input" model="model.input" :rules="{required: true}">
           <Input v-model="model.input" />
