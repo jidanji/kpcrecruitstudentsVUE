@@ -1,6 +1,82 @@
   <template>
   <div>
-    <Dialog v-model="vStatus.dialogEditFormVisible" title="Dialog Title" ref="__demo">Dialog Body</Dialog>
+    <Dialog v-model="vStatus.dialogEditFormVisible" title="录入学生信息" ref="__demo">
+      <Form ref="form" labelWidth="200">
+        <FormItem label="Input" model="model.input" :rules="{required: true}">
+          <Input v-model="model.input" />
+        </FormItem>
+        <FormItem
+          label="Select"
+          model="model.select"
+          :rules="{required: true}"
+          :messages="{required: '必须选择'}"
+        >
+          <Select v-model="model.select">
+            <Option value="Javascript">Javascript</Option>
+            <Option value="PHP">PHP</Option>
+            <Option value="C++">C++</Option>
+          </Select>
+        </FormItem>
+        <FormItem
+          label="Checkbox"
+          model="model.checkbox"
+          :rules="{required: true, maxLength: 2}"
+          :messages="{required: '必须选择'}"
+        >
+          <Checkbox trueValue="Javascript" v-model="model.checkbox">Javascript</Checkbox>
+          <Checkbox trueValue="PHP" v-model="model.checkbox">PHP</Checkbox>
+          <Checkbox trueValue="C++" v-model="model.checkbox">C++</Checkbox>
+        </FormItem>
+        <FormItem
+          label="Radio"
+          model="model.radio"
+          :rules="{required: true}"
+          :messages="{required: '必须选择'}"
+        >
+          <Radio trueValue="Javascript" v-model="model.radio">Javascript</Radio>
+          <Radio trueValue="PHP" v-model="model.radio">PHP</Radio>
+          <Radio trueValue="C++" v-model="model.radio">C++</Radio>
+        </FormItem>
+        <FormItem
+          label="Radio ButtonGroup"
+          model="model.buttonGroup"
+          :rules="{required: true}"
+          :messages="{required: '必须选择'}"
+        >
+          <ButtonGroup checkType="radio" v-model="model.buttonGroup">
+            <Button value="Javascript">Javascript</Button>
+            <Button value="PHP">PHP</Button>
+            <Button value="C++">C++</Button>
+          </ButtonGroup>
+        </FormItem>
+        <FormItem label="Switch" model="model.switch">
+          <KSwitch v-model="model.switch" />
+        </FormItem>
+        <FormItem model="model.slider" :rules="{required: true, min: 1}" label="Slider">
+          <Slider v-model="model.slider" :isShowInput="false" />
+        </FormItem>
+        <FormItem model="model.date" :rules="{required: true}" label="Datepicker">
+          <Datepicker v-model="model.date" />
+        </FormItem>
+        <FormItem label="Textarea" model="model.textarea" :rules="{required: true}">
+          <Input type="textarea" v-model="model.textarea" />
+        </FormItem>
+        <FormItem label="Password" model="model.password" :rules="{required: true}">
+          <Input type="password" v-model="model.password" />
+        </FormItem>
+        <FormItem
+          label="Confirm Password"
+          model="model.confirmPassword"
+          :rules="{required: true, equalTo: 'model.password'}"
+        >
+          <Input type="password" v-model="model.confirmPassword" />
+        </FormItem>
+        <FormItem>
+          <Button type="primary" htmlType="submit" @click="handleSubmit">提交</Button>
+          <Button style="margin-left: 20px" @click="reset">重置</Button>
+        </FormItem>
+      </Form>
+    </Dialog>
     <div id="a1" class="a1">
       <Form ref="form" labelWidth="80" layout="inline" @submit="searchClick">
         <FormItem label="学生姓名" model="searchForm.studentName">
@@ -44,17 +120,23 @@
 
       <TableColumn align="center" key="action" title="操作" width="200" fixed="right">
         <template slot="template" slot-scope="data">
-          <Button @click.stop='editDialog(data)' size="small" class="btn-maring" ghost type="primary">修改</Button>
-          <Tooltip content="确定删除？"
+          <Button
+            @click.stop="editDialog(data)"
+            size="small"
+            class="btn-maring"
+            ghost
+            type="primary"
+          >修改</Button>
+          <Tooltip
+            content="确定删除？"
             confirm
             theme="light"
             trigger="click"
             @ok="ok"
             @cancel="cancel"
             ref="__test"
-
-          container='body'
-        >
+            container="body"
+          >
             <Button size="small" class="btn-maring" type="danger" ghost>删除</Button>
           </Tooltip>
         </template>
@@ -86,7 +168,7 @@ import { Row, Col } from "kpc-vue/components/grid";
 import { ButtonGroup, Button } from "kpc-vue/components/button";
 import Dialog from "kpc-vue/components/dialog";
 
-import Tooltip from 'kpc-vue/components/tooltip';
+import Tooltip from "kpc-vue/components/tooltip";
 
 import {
   fetchStudent,
@@ -98,6 +180,13 @@ import { fetchZhuanYeDict } from "@/services/dictinfo";
 import DateFMT from "@/utils/DateFMT";
 
 import $ from "jquery";
+import { Select, Option } from "kpc-vue/components/select";
+import { Checkbox } from "kpc-vue/components/checkbox";
+import { Radio } from "kpc-vue/components/radio";
+
+import { Switch as KSwitch } from "kpc-vue/components/switch";
+import { Slider } from "kpc-vue/components/slider";
+import { Datepicker } from "kpc-vue/components/datepicker";
 
 export default {
   components: {
@@ -112,6 +201,14 @@ export default {
     Col,
     Button,
     Dialog,
+    Select,
+    Option,
+    Checkbox,
+    Radio,
+    ButtonGroup,
+    KSwitch,
+    Slider,
+    Datepicker,
   },
   data() {
     var defaultValue = {
@@ -137,6 +234,7 @@ export default {
       ReStudentIDCard: "",
     };
     return {
+      model: {},
       formOp: "",
       nuli: "正在努力查询数据",
       elCss: {
@@ -306,7 +404,7 @@ export default {
         this.pager.currentPage = c;
         this.getStudentArray();
         this.$refs.multipleTable.scrollToRowByIndex(0);
-      }else{
+      } else {
         this.sizeChange(limit);
       }
     },
@@ -420,7 +518,7 @@ export default {
   margin-right: 10px;
 }
 
-.k-form-item {
+#a1 .k-form-item {
   margin: 0 0 10px 0 !important;
 }
 </style>
