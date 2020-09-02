@@ -32,7 +32,7 @@
 
       <TableColumn minWidth="70" key="StudentName" title="学生姓名" />
 
-      <TableColumn minWidth="140" key="StudentIDCard" title="身份证号码" />
+      <TableColumn minWidth="150" key="StudentIDCard" title="身份证号码" />
       <TableColumn minWidth="80" key="StudentType" title="学生性质" />
 
       <TableColumn minWidth="100" key="UserPhone" title="联系方式" />
