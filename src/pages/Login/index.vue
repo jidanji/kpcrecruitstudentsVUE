@@ -1,7 +1,10 @@
 <template>
   <div>
     <div class="login-wraper">
-     
+     <div class="carousel-caption d-none d-md-block">
+            <h5 class="animate__animated animate__fadeInDown">金山医疗</h5>
+            <p class="animate__animated animate__fadeInDown">智能，共享，传播</p>
+          </div>
     </div>
      <div class="index"> <div class="login-boxs">
         <div class="login-tit">登录</div>
@@ -77,6 +80,31 @@ export default {
 };
 </script>
 <style lang="stylus" scope>
+.carousel-caption{
+    position: absolute;
+    right: unset;
+    left: 15%;
+    z-index: 10;
+    padding-top: 0;
+    padding-bottom: 0;
+    color: #fff;
+    text-align: center;
+    top:30%
+}
+.carousel-caption p {
+    color: #ffffff;
+    font-size: 18px;
+    margin-top: 30px;
+    letter-spacing: 2px;
+    text-align: left;
+}
+.carousel-caption h5 {
+    color: #ffffff;
+    font-size: 52px;
+    line-height: 66px;
+    letter-spacing: 5px;
+    text-align: left;
+}
 .index {
   position: absolute;
   width: 100%;
@@ -89,7 +117,7 @@ export default {
 }
 
 .login-wraper {
-  background: url('../../assets/a1.jpg') 0 0 no-repeat;
+  background: url('../../assets/a5.jpg') 0 0 no-repeat;
   background-size: cover;
   min-height: calc(100vh);
   position: relative;

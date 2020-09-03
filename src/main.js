@@ -15,6 +15,10 @@ import $ from 'jquery'
 import 'bootstrap/dist/js/bootstrap.min.js'
 //bootstrap
 
+import animated from 'animate.css' // npm install animate.css --save安装，再引入
+
+Vue.use(animated)
+
 new Vue({
     router,
     store,
