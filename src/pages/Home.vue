@@ -186,7 +186,7 @@
         </FormItem>
 
         <FormItem>
-          <Button type="primary" htmlType="submit">查询</Button>
+          <Button type="primary" htmlType="submit">点击查询</Button>
         </FormItem>
       </Form>
     </div>
