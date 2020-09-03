@@ -9,9 +9,9 @@
                 <MenuItem key="1" @select="onSelect">
                     <Icon class="ion-flag" />系统管理
                     <Menu>
-                        <MenuItem key="1-1" to='/'>首页</MenuItem>
-                        <MenuItem key="1-2" to='/about'>关于</MenuItem>
-                        <MenuItem key="1-3" to='/table'>Table</MenuItem>
+                        <MenuItem key="/" to='/'>首页</MenuItem>
+                        <MenuItem key="/about" to='/about'>关于</MenuItem>
+                        <MenuItem key="/table" to='/table'>Table</MenuItem>
                     </Menu>
                 </MenuItem>
             </Menu>
@@ -56,8 +56,8 @@ export default {
             console.log("key", item.get("key"));
         },
         onRouteChanged() {
-            // let that = this;
-            // that.selectedKey = that.$route.path;
+             let that = this;
+             that.selectedKey = that.$route.path;
         },
         _toggle() {
             this.collapse = !this.collapse;
