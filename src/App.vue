@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <!-- <Layout /> -->
-    <div id="mainTitle">银河计费系统对接项目</div>
+    <router-view />
+    <!-- <div id="mainTitle">银河计费系统对接项目</div>
     <div id="mainContent">
       <Row>
         <Col span="4">
@@ -11,63 +12,26 @@
               <Menu>
                 <MenuItem key="/" to='/'>首页</MenuItem>
                 <MenuItem key="/About" to='/About'>关于</MenuItem>
-               
-                
               </Menu>
             </MenuItem>
-          
-            
- 
           </Menu>
         </Col>
         <Col span="20">
           <router-view />
         </Col>
       </Row>
-    </div>
+    </div> -->
   </div>
 </template>
 <script>
-import { Row, Col } from "kpc-vue/components/grid";
-
-import { Menu, MenuItem } from "kpc-vue/components/menu";
-import Icon from "kpc-vue/components/icon";
-// import Layout from '@/component/layout';
 export default {
-  watch:{
-    $route(){
-      this.onRouteChanged();
-    }
-  },
   components: {
-    // Layout,
-    Row,
-    Col,
-    Menu,
-    MenuItem,
-    Icon,
   },
   data() {
     return {
-      expandedKeys: [],
-      selectedKey: "",
+      
     };
   },
-  methods: {
-    onSelect(item) {
-      console.log("key", item.get("key"));
-    },
-    onRouteChanged() {
-      let that = this;
-      that.selectedKey = that.$route.path;
-    }
-  },
-  mounted(){
-    this.onRouteChanged();
-  },
-  created(){
-    this.onRouteChanged();
-  }
 };
 </script>
 

@@ -1,31 +1,19 @@
 <template>
     <Layout id="layout" class="layout">
         <Aside :collapse="collapse">
-            <div class="logo">LOGO</div>
+            <div class="logo">银河计费系统对接项目</div>
             <Menu
                 :expandedKeys.sync="expandedKeys" 
                 :selectedKey.sync="selectedKey"
             >
-                <MenuItem key="1">
-                    <Icon class="ion-flag" />menu 1
+                <MenuItem key="1" @select="onSelect">
+                    <Icon class="ion-flag" />系统管理
                     <Menu>
-                        <MenuItem key="1-1">sub menu 1</MenuItem>
-                        <MenuItem key="1-2">sub menu 2</MenuItem>
-                        <MenuItem key="1-3" disabled>sub menu 3</MenuItem>
-                        <MenuItem key="1-4">sub menu 4</MenuItem>
+                        <MenuItem key="1-1" to='/'>首页</MenuItem>
+                        <MenuItem key="1-2" to='/about'>关于</MenuItem>
+                        <MenuItem key="1-3" to='/table'>Table</MenuItem>
                     </Menu>
                 </MenuItem>
-                <MenuItem key="2" disabled><Icon class="ion-star" />menu 2</MenuItem>
-                <MenuItem key="3">
-                    <i class="k-icon ion-heart"></i>menu 3
-                    <Menu>
-                        <MenuItem key="3-1">sub menu 1</MenuItem>
-                        <MenuItem key="3-2">sub menu 2</MenuItem>
-                        <MenuItem key="3-3" disabled>sub menu 3</MenuItem>
-                        <MenuItem key="3-4">sub menu 4</MenuItem>
-                    </Menu>
-                </MenuItem>
-                <MenuItem key="4"><Icon class="ion-gear-b" />menu 4</MenuItem>
             </Menu>
         </Aside>
         <Layout>
@@ -48,21 +36,39 @@ import {Breadcrumb, BreadcrumbItem} from 'kpc-vue/components/breadcrumb';
 import {Button} from 'kpc-vue/components/button';
 
 export default {
+    watch:{
+        $route(){
+        this.onRouteChanged();
+        }
+    },
     components: {
         Layout, Header, Aside, Body, Footer, Menu, MenuItem, Icon, Breadcrumb, BreadcrumbItem, Button
     },
     data() {
         return {
-            "collapse": false,
-            "expandedKeys": [],
-            "selectedKey": "3-1"
+            collapse: false,
+            expandedKeys: ['1'],
+            selectedKey: "1",
         }
     },
     methods: {
+        onSelect(item) {
+            console.log("key", item.get("key"));
+        },
+        onRouteChanged() {
+            // let that = this;
+            // that.selectedKey = that.$route.path;
+        },
         _toggle() {
             this.collapse = !this.collapse;
         },
     },
+    mounted(){
+        this.onRouteChanged();
+    },
+    created(){
+        this.onRouteChanged();
+    }
 }
 </script>
 <style lang="stylus">

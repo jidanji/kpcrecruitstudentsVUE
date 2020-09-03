@@ -231,8 +231,8 @@
             confirm
             theme="light"
             trigger="click"
-            @ok="ok"
-            @cancel="cancel"
+            @ok="on=>{console.log('ok')}"
+            @cancel="cancel=>{console.log('cancel')}"
             ref="__test"
             container="body"
           >
@@ -333,6 +333,7 @@ export default {
       ReStudentIDCard: "",
     };
     return {
+      size:'default',
       model: {
         checkbox: [],
       },
