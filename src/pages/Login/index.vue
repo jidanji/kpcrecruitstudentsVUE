@@ -31,13 +31,14 @@ import {Input} from 'kpc-vue/components/input';
 import Button from 'kpc-vue/components/button';
 import Message from 'kpc-vue/components/message';
 import * as api from '@/services/common'
-// import md5 from "js-md5";
+import md5 from "js-md5";
 export default {
     components: {
         Form, FormItem, Input, Button,
     },
     data() {
         return {
+            loading:false,
             model: {
                 channel:'WEB',
                 clientId:'adminapp',
@@ -48,18 +49,26 @@ export default {
     },
     methods: {
         async submit(values) {
+            this.loading = true;
             if (await this.$refs.form.validate()) {
                 const params = {...this.model}
-                // params.password = md5(params.password)
+                params.password = md5(params.password)
                 const res = await api.login({
                     data:{...params}
                 })
                 if(res.code === 200){
-                    console.log(123)
+                    let { accessToken, refreshToken , userId } = res.data;
+                    sessionStorage["accessToken"] = accessToken;
+                    sessionStorage["userId"] = userId;
+                    sessionStorage["userName"] = this.model.username;
+                    this.$router.push('/');
+                    this.loading = false;
                 }else{
                     Message['error'](res.message);
+                    this.loading = false;
                 }
             } else {
+                this.loading = false;
                 // 验证失败，我们可以获取第一条出错的FormItem
                 console.log(this.$refs.form.getFirstInvalidFormItem());
             }
