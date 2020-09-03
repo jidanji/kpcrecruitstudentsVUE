@@ -20,6 +20,7 @@ export default class DateFMT {
   dateFormate(input) {
     if (input) {
       var d = eval('new ' + input.replace('/', '', 'g').replace('/', '', 'g'));
+      // eslint-disable-next-line no-undef
       return Format(d, "yyyy-MM-dd");
     } else {
       return "";

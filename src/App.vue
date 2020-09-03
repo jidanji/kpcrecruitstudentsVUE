@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <!-- <Layout /> -->
     <div id="mainTitle">银河计费系统对接项目</div>
     <div id="mainContent">
       <Row>
@@ -31,7 +32,7 @@ import { Row, Col } from "kpc-vue/components/grid";
 
 import { Menu, MenuItem } from "kpc-vue/components/menu";
 import Icon from "kpc-vue/components/icon";
-
+// import Layout from '@/component/layout';
 export default {
   watch:{
     $route(){
@@ -39,6 +40,7 @@ export default {
     }
   },
   components: {
+    // Layout,
     Row,
     Col,
     Menu,
@@ -103,5 +105,9 @@ export default {
 
 #mainContent {
   margin-top: 50px;
+  height:100%;
+}
+.k-row{
+  height:100%;
 }
 </style>

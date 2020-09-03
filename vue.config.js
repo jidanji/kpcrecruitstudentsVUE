@@ -20,6 +20,13 @@ module.exports = {
                     '^/api': ''
                 }
             },
+            '/sso-manager': {
+                target: "http://120.92.20.180:8850",
+                pathRewrite: {
+                    '^/sso-manager': '/sso-manager'
+                },
+                changeOrigin: true
+            },
             '/ssomanager': {
                 target: 'http://120.71.148.127:9892/sso-manager',
                 pathRewrite: {
