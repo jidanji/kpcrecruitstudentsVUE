@@ -396,6 +396,9 @@ export default {
     this.$nextTick(() => {
       that.autoHeight();
     });
+    $(window).resize(()=>{
+      that.autoHeight();
+    })
   },
   created() {},
   computed: {
