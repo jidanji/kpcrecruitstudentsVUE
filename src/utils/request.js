@@ -6,7 +6,6 @@ let IS_DEBUG = process.env.NODE_ENV === 'development' ? true : false;
 export async function request(url, options) {
     try {
         const axiosReponse = await axios(url, options);
-        debugger
         await checkStatus(axiosReponse);
         const retData = await dealResponse106(axiosReponse)
         return retData;

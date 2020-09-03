@@ -2,8 +2,12 @@
     <div class="login-wraper">
         <div class="login-boxs">
             <div class="login-tit">登录</div>
-            <Form @submit="submit" ref="form" :hideLabel="true" labelWidth="0">
-                
+            <Form 
+                class="login-form"
+                @submit="submit" 
+                ref="form" 
+                :hideLabel="true" 
+                labelWidth="0">
                 <FormItem model="model.username" 
                     :rules="{required: true, message:'请输入用户名'}">
                     <Input v-model="model.username" placeholder="用户名" />
@@ -27,6 +31,7 @@ import {Input} from 'kpc-vue/components/input';
 import Button from 'kpc-vue/components/button';
 import Message from 'kpc-vue/components/message';
 import * as api from '@/services/common'
+// import md5 from "js-md5";
 export default {
     components: {
         Form, FormItem, Input, Button,
@@ -44,9 +49,16 @@ export default {
     methods: {
         async submit(values) {
             if (await this.$refs.form.validate()) {
+                const params = {...this.model}
+                // params.password = md5(params.password)
                 const res = await api.login({
-                    data:{...this.model}
+                    data:{...params}
                 })
+                if(res.code === 200){
+                    console.log(123)
+                }else{
+                    Message['error'](res.message);
+                }
             } else {
                 // 验证失败，我们可以获取第一条出错的FormItem
                 console.log(this.$refs.form.getFirstInvalidFormItem());
@@ -77,18 +89,19 @@ export default {
 .login-tit
     font-size: 20px;
     text-align: left;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
     border-bottom:1px solid #e5e5e5;
-    margin-bottom:10px;
-.k-form-item > .k-label
+    margin-bottom:20px;
+
+.login-form .k-form-item > .k-label
     padding-right:0;
-.k-input
+.login-form .k-input
     width:20.5rem;
-.k-input .k-inner
+.login-form .k-input .k-inner
     height:2.375rem;
-.btn-item .k-content
+.login-form .btn-item .k-content
     width:20.75rem;
-.k-btn
+.login-form .k-btn
     width:100%;
     height:2.375rem;
 </style>

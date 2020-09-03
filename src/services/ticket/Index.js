@@ -38,7 +38,6 @@ export const updateItem = (options) => {
 //删除用户融资申请
 
 export const deleteItem = (ids,options) => {
-    debugger;
     return requestWithToken(`/jiwei//invoiceInfo/deleteByIds/${ids}`, {
         method: 'GET',...options
     })

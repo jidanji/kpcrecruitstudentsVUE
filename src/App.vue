@@ -59,7 +59,6 @@ export default {
     },
     onRouteChanged() {
       let that = this;
-      debugger;
       that.selectedKey = that.$route.path;
     }
   },
