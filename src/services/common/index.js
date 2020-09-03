@@ -6,7 +6,7 @@ import {
 
 //登录
 export const login = (options) => {
-    debugger
+   
     return request('/sso-manager/iApi/loginWithPassword', {
         method: 'POST',
         ...options

@@ -45,7 +45,7 @@ export default {
         async submit(values) {
             if (await this.$refs.form.validate()) {
                 const res = await api.login({
-                    ...this.model
+                    data:{...this.model}
                 })
             } else {
                 // 验证失败，我们可以获取第一条出错的FormItem
@@ -58,7 +58,7 @@ export default {
     },
 }
 </script>
-<style lang="stylus">
+<style lang="stylus" scope>
 
 .login-wraper
     background:url("../../assets/login.jpg") 0 0 no-repeat;
