@@ -7,20 +7,35 @@
       title="录入学生信息"
       ref="__demo"
     >
-      <Form ref="form" labelWidth="120">
+      <Form :layout="layout" :size="size">
         <Row>
           <Col span="12">
-            <FormItem label="Input" model="model.input" :rules="{required: true}">
+            <FormItem :fluid="true" label="Layout">
+              <ButtonGroup checkType="radio" v-model="layout">
+                <Button value="horizontal">horizontal</Button>
+                <Button value="vertical">vertical</Button>
+                <Button value="inline">inline</Button>
+              </ButtonGroup>
+            </FormItem>
+          </Col>
+          <Col span="12">
+            <FormItem :fluid="true" label="Size">
+              <ButtonGroup checkType="radio" v-model="size">
+                <Button value="default">default</Button>
+                <Button value="small">small</Button>
+                <Button value="mini">mini</Button>
+              </ButtonGroup>
+            </FormItem>
+          </Col>
+        </Row>
+        <Row>
+          <Col span="12">
+            <FormItem :fluid="true" label="Input" model="model.input" :rules="{required: true}">
               <Input v-model="model.input" />
             </FormItem>
           </Col>
           <Col span="12">
-            <FormItem
-              label="Select"
-              model="model.select"
-              :rules="{required: true}"
-              :messages="{required: '必须选择'}"
-            >
+            <FormItem :fluid="true" label="Select" model="model.select" :rules="{required: true}">
               <Select v-model="model.select">
                 <Option value="Javascript">Javascript</Option>
                 <Option value="PHP">PHP</Option>
@@ -29,35 +44,11 @@
             </FormItem>
           </Col>
         </Row>
+
         <Row>
           <Col span="12">
             <FormItem
-              label="Checkbox"
-              model="model.checkbox"
-              :rules="{required: true, maxLength: 2}"
-              :messages="{required: '必须选择'}"
-            >
-              <Checkbox trueValue="Javascript" v-model="model.checkbox">Javascript</Checkbox>
-              <Checkbox trueValue="PHP" v-model="model.checkbox">PHP</Checkbox>
-              <Checkbox trueValue="C++" v-model="model.checkbox">C++</Checkbox>
-            </FormItem>
-          </Col>
-          <Col span="12">
-            <FormItem
-              label="Radio"
-              model="model.radio"
-              :rules="{required: true}"
-              :messages="{required: '必须选择'}"
-            >
-              <Radio trueValue="Javascript" v-model="model.radio">Javascript</Radio>
-              <Radio trueValue="PHP" v-model="model.radio">PHP</Radio>
-              <Radio trueValue="C++" v-model="model.radio">C++</Radio>
-            </FormItem>
-          </Col>
-        </Row>
-        <Row>
-          <Col span="12">
-            <FormItem
+              :fluid="true"
               label="Radio ButtonGroup"
               model="model.buttonGroup"
               :rules="{required: true}"
@@ -71,20 +62,118 @@
             </FormItem>
           </Col>
           <Col span="12">
+            <FormItem :fluid="true" label="Switch" model="model.switch">
+              <KSwitch v-model="model.switch" />
+            </FormItem>
+          </Col>
+        </Row>
+
+        <Row>
+          <Col span="12">
+            <FormItem :fluid="true" label="Input" model="model.input" :rules="{required: true}">
+              <Input v-model="model.input" />
+            </FormItem>
+          </Col>
+          <Col span="12">
             <FormItem
-              label="Confirm Password"
+              :fluid="true"
+              label="Select"
+              model="model.select"
+              :rules="{required: true}"
+              :messages="{required: '必须选择'}"
+            >
+              <Select v-model="model.select">
+                <Option value="Javascript">Javascript</Option>
+                <Option value="PHP">PHP</Option>
+                <Option value="C++">C++</Option>
+              </Select>
+            </FormItem>
+          </Col>
+        </Row>
+
+        <Row>
+          <Col span="12">
+            <FormItem
+              :fluid="true"
+              label="Checkbox"
+              model="model.checkbox"
+              :rules="{required: true, maxLength: 2}"
+              :messages="{required: '必须选择'}"
+            >
+              <Checkbox trueValue="Javascript" v-model="model.checkbox">Javascript</Checkbox>
+              <Checkbox trueValue="PHP" v-model="model.checkbox">PHP</Checkbox>
+              <Checkbox trueValue="C++" v-model="model.checkbox">C++</Checkbox>
+            </FormItem>
+          </Col>
+          <Col span="12">
+            <FormItem
+              :fluid="true"
+              label="Radio"
+              model="model.radio"
+              :rules="{required: true}"
+              :messages="{required: '必须选择'}"
+            >
+              <Radio trueValue="Javascript" v-model="model.radio">Javascript</Radio>
+              <Radio trueValue="PHP" v-model="model.radio">PHP</Radio>
+              <Radio trueValue="C++" v-model="model.radio">C++</Radio>
+            </FormItem>
+          </Col>
+        </Row>
+
+        <Row>
+          <Col span="12">
+            <FormItem
+              :fluid="true"
+              model="model.slider"
+              :rules="{required: true, min: 1}"
+              label="Slider"
+            >
+              <Slider v-model="model.slider" :isShowInput="false" />
+            </FormItem>
+          </Col>
+          <Col span="12">
+            <FormItem :fluid="true" model="model.date" :rules="{required: true}" label="Datepicker">
+              <Datepicker v-model="model.date" />
+            </FormItem>
+          </Col>
+        </Row>
+
+        <Row>
+          <Col span="12">
+            <FormItem
+              :fluid="true"
+              label="Textarea"
+              model="model.textarea"
+              :rules="{required: true}"
+            >
+              <Input type="textarea" v-model="model.textarea" />
+            </FormItem>
+          </Col>
+          <Col span="12">
+            <FormItem
+              :fluid="true"
+              label="Password"
+              model="model.password"
+              :rules="{required: true}"
+            >
+              <Input type="password" v-model="model.password" />
+            </FormItem>
+          </Col>
+        </Row>
+
+        <Row>
+          <Col span="12">
+            <FormItem
+              :fluid="true"
+              label="再次输入一遍密码"
               model="model.confirmPassword"
               :rules="{required: true, equalTo: 'model.password'}"
             >
               <Input type="password" v-model="model.confirmPassword" />
             </FormItem>
           </Col>
+          <Col span="12"></Col>
         </Row>
-
-        <FormItem>
-          <Button type="primary" htmlType="submit" @click="handleSubmit">提交</Button>
-          <Button style="margin-left: 20px" @click="reset">重置</Button>
-        </FormItem>
       </Form>
     </Dialog>
     <div id="a1" class="a1">
@@ -244,7 +333,10 @@ export default {
       ReStudentIDCard: "",
     };
     return {
-      model: {},
+      model: {
+        checkbox: [],
+      },
+      layout: "horizontal",
       formOp: "",
       nuli: "正在努力查询数据",
       elCss: {
@@ -530,6 +622,10 @@ export default {
 
 #a1 .k-form-item {
   margin: 0 0 10px 0 !important;
+}
+
+.k-row {
+  margin-bottom: 10px;
 }
 </style>
 
