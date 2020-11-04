@@ -25,20 +25,17 @@
 </template>
 <script>
 export default {
-  components: {
-  },
+  components: {},
   data() {
-    return {
-      
-    };
+    return {};
   },
 };
 </script>
 
 <style lang="stylus">
 ::-webkit-scrollbar {
-  width: 6px !important;
-  height: 6px !important;
+  width: 8px !important;
+  height: 8px !important;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -68,9 +65,10 @@ export default {
 
 #mainContent {
   margin-top: 50px;
-  height:100%;
+  height: 100%;
 }
-.k-row{
-  height:100%;
+
+.k-row {
+  height: 100%;
 }
 </style>

@@ -30,12 +30,22 @@
         </Row>
         <Row>
           <Col span="12">
-            <FormItem :fluid="true" label="Input" model="model.input" :rules="{required: true}">
+            <FormItem
+              :fluid="true"
+              label="Input"
+              model="model.input"
+              :rules="{ required: true }"
+            >
               <Input v-model="model.input" />
             </FormItem>
           </Col>
           <Col span="12">
-            <FormItem :fluid="true" label="Select" model="model.select" :rules="{required: true}">
+            <FormItem
+              :fluid="true"
+              label="Select"
+              model="model.select"
+              :rules="{ required: true }"
+            >
               <Select v-model="model.select">
                 <Option value="Javascript">Javascript</Option>
                 <Option value="PHP">PHP</Option>
@@ -51,8 +61,8 @@
               :fluid="true"
               label="Radio ButtonGroup"
               model="model.buttonGroup"
-              :rules="{required: true}"
-              :messages="{required: '必须选择'}"
+              :rules="{ required: true }"
+              :messages="{ required: '必须选择' }"
             >
               <ButtonGroup checkType="radio" v-model="model.buttonGroup">
                 <Button value="Javascript">Javascript</Button>
@@ -70,7 +80,12 @@
 
         <Row>
           <Col span="12">
-            <FormItem :fluid="true" label="Input" model="model.input" :rules="{required: true}">
+            <FormItem
+              :fluid="true"
+              label="Input"
+              model="model.input"
+              :rules="{ required: true }"
+            >
               <Input v-model="model.input" />
             </FormItem>
           </Col>
@@ -79,8 +94,8 @@
               :fluid="true"
               label="Select"
               model="model.select"
-              :rules="{required: true}"
-              :messages="{required: '必须选择'}"
+              :rules="{ required: true }"
+              :messages="{ required: '必须选择' }"
             >
               <Select v-model="model.select">
                 <Option value="Javascript">Javascript</Option>
@@ -97,10 +112,12 @@
               :fluid="true"
               label="Checkbox"
               model="model.checkbox"
-              :rules="{required: true, maxLength: 2}"
-              :messages="{required: '必须选择'}"
+              :rules="{ required: true, maxLength: 2 }"
+              :messages="{ required: '必须选择' }"
             >
-              <Checkbox trueValue="Javascript" v-model="model.checkbox">Javascript</Checkbox>
+              <Checkbox trueValue="Javascript" v-model="model.checkbox"
+                >Javascript</Checkbox
+              >
               <Checkbox trueValue="PHP" v-model="model.checkbox">PHP</Checkbox>
               <Checkbox trueValue="C++" v-model="model.checkbox">C++</Checkbox>
             </FormItem>
@@ -110,10 +127,12 @@
               :fluid="true"
               label="Radio"
               model="model.radio"
-              :rules="{required: true}"
-              :messages="{required: '必须选择'}"
+              :rules="{ required: true }"
+              :messages="{ required: '必须选择' }"
             >
-              <Radio trueValue="Javascript" v-model="model.radio">Javascript</Radio>
+              <Radio trueValue="Javascript" v-model="model.radio"
+                >Javascript</Radio
+              >
               <Radio trueValue="PHP" v-model="model.radio">PHP</Radio>
               <Radio trueValue="C++" v-model="model.radio">C++</Radio>
             </FormItem>
@@ -125,14 +144,19 @@
             <FormItem
               :fluid="true"
               model="model.slider"
-              :rules="{required: true, min: 1}"
+              :rules="{ required: true, min: 1 }"
               label="Slider"
             >
               <Slider v-model="model.slider" :isShowInput="false" />
             </FormItem>
           </Col>
           <Col span="12">
-            <FormItem :fluid="true" model="model.date" :rules="{required: true}" label="Datepicker">
+            <FormItem
+              :fluid="true"
+              model="model.date"
+              :rules="{ required: true }"
+              label="Datepicker"
+            >
               <Datepicker v-model="model.date" />
             </FormItem>
           </Col>
@@ -144,7 +168,7 @@
               :fluid="true"
               label="Textarea"
               model="model.textarea"
-              :rules="{required: true}"
+              :rules="{ required: true }"
             >
               <Input type="textarea" v-model="model.textarea" />
             </FormItem>
@@ -154,7 +178,7 @@
               :fluid="true"
               label="Password"
               model="model.password"
-              :rules="{required: true}"
+              :rules="{ required: true }"
             >
               <Input type="password" v-model="model.password" />
             </FormItem>
@@ -167,7 +191,7 @@
               :fluid="true"
               label="再次输入一遍密码"
               model="model.confirmPassword"
-              :rules="{required: true, equalTo: 'model.password'}"
+              :rules="{ required: true, equalTo: 'model.password' }"
             >
               <Input type="password" v-model="model.confirmPassword" />
             </FormItem>
@@ -176,18 +200,29 @@
         </Row>
       </Form>
     </Dialog>
-    <div id="a1" class="a1">
+    <div id="a1" class="a1" style="display: flex">
       <Form ref="form" labelWidth="80" layout="inline" @submit="searchClick">
-        <FormItem label="学生姓名" model="searchForm.studentName">
-          <Input placeholder="请输入学生姓名" v-model="searchForm.studentName" />
-        </FormItem>
-        <FormItem label="身份证号" model="searchForm.studentIDCard">
-          <Input placeholder="请输入身份证号" v-model="searchForm.studentIDCard" />
-        </FormItem>
+        <div style="display: inline-block; width: 400px">
+          <FormItem label="学生姓名" model="searchForm.studentName">
+            <Input
+              placeholder="请输入学生姓名"
+              v-model="searchForm.studentName"
+            />
+          </FormItem>
+        </div>
 
-        <FormItem>
+        <div style="display: inline-block; width: 400px">
+          <FormItem label="身份证号" model="searchForm.studentIDCard">
+            <Input
+              placeholder="请输入身份证号"
+              v-model="searchForm.studentIDCard"
+            />
+          </FormItem>
+        </div>
+
+        <div style="display: inline-block">
           <Button type="primary" htmlType="submit">点击查询</Button>
-        </FormItem>
+        </div>
       </Form>
     </div>
 
@@ -195,60 +230,86 @@
       <Button type="primary" @click="addDialog">录入学生信息</Button>
     </div>
 
-    <Table
-      :fixHeader="elCss.leftHeight"
-      :loading="loadingStatus.tableLoading"
-      :data="dataSource.studentsArray"
-      resizable
-      :stripe="true"
-      ref="multipleTable"
-    >
-      <TableColumn minWidth="50" key="kop" title="序号" :template="setIndex" />
+    <div>
+      <div style="padding-bottom: 20px">
+        <Table
+          :fixHeader="elCss.leftHeight"
+          :loading="loadingStatus.tableLoading"
+          :data="dataSource.studentsArray"
+          resizable
+          :stripe="true"
+          ref="multipleTable"
+        >
+          <TableColumn
+            fixed="left"
+            width="50"
+            key="kop"
+            title="序号"
+            :template="setIndex"
+          />
 
-      <TableColumn minWidth="70" key="StudentName" title="学生姓名" />
+          <TableColumn width="70" key="StudentName" title="学生姓名" />
 
-      <TableColumn minWidth="150" key="StudentIDCard" title="身份证号码" />
-      <TableColumn minWidth="80" key="StudentType" title="学生性质" />
+          <TableColumn width="150" key="StudentIDCard" title="身份证号码" />
+          <TableColumn width="80" key="StudentType" title="学生性质" />
 
-      <TableColumn minWidth="100" key="UserPhone" title="联系方式" />
-      <TableColumn minWidth="100" key="UserName" title="推荐人" />
+          <TableColumn width="100" key="UserPhone" title="联系方式" />
+          <TableColumn width="100" key="UserName" title="推荐人" />
 
-      <TableColumn minWidth="150" key="UserDeptName" title="推荐人部门" />
+          <TableColumn width="120" key="UserDeptName" title="推荐人部门" />
 
-      <TableColumn minWidth="150" key="kop1" title="上传时间" :template="datetimeFMT" />
+          <TableColumn
+            width="150"
+            key="kop1"
+            title="上传时间"
+            :template="datetimeFMT"
+          />
 
-      <TableColumn align="center" key="action" title="操作" width="200" fixed="right">
-        <template slot="template" slot-scope="data">
-          <Button
-            @click.stop="editDialog(data)"
-            size="small"
-            class="btn-maring"
-            ghost
-            type="primary"
-          >修改</Button>
-          <Tooltip
-            content="确定删除？"
-            confirm
-            theme="light"
-            trigger="click"
-            @ok="on=>{console.log('ok')}"
-            @cancel="cancel=>{console.log('cancel')}"
-            ref="__test"
-            container="body"
+          <TableColumn
+            width="150"
+            align="center"
+            key="action"
+            title="操作"
+            fixed="right"
           >
-            <Button size="small" class="btn-maring" type="danger" ghost>删除</Button>
-          </Tooltip>
-        </template>
-      </TableColumn>
-    </Table>
-
-    <Pagination
-      :limits="[2,10,15,100, 200, 300, 400]"
-      :limit="pager.pageSize"
-      :current="pager.currentPage"
-      :total="pager.recordsTotal"
-      @change="currentChange"
-    />
+            <template slot="template" slot-scope="data">
+              <Button
+                @click.stop="editDialog(data)"
+                size="small"
+                class="btn-maring"
+                ghost
+                type="primary"
+                >修改</Button
+              >
+              <Tooltip
+                content="确定删除？"
+                confirm
+                theme="light"
+                trigger="click"
+                @ok="ok(data)"
+                @cancel="cancel"
+                ref="__test"
+                container="body"
+              >
+                <Button size="small" class="btn-maring" type="danger" ghost
+                  >删除</Button
+                >
+              </Tooltip>
+            </template>
+          </TableColumn>
+        </Table>
+      </div>
+      <div>
+        <Pagination
+          noBorder
+          :limits="[15,50, 100, 200, 300, 400]"
+          :limit="pager.pageSize"
+          :current="pager.currentPage"
+          :total="pager.recordsTotal"
+          @change="currentChange"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -276,7 +337,7 @@ import {
   updateStudent,
 } from "@/services/student";
 import { fetchZhuanYeDict } from "@/services/dictinfo";
-import DateFMT from "@/utils/DateFMT";
+import DateFMTforaspnetmvc from "@/utils/DateFMTforaspnetmvc";
 
 import $ from "jquery";
 import { Select, Option } from "kpc-vue/components/select";
@@ -333,7 +394,7 @@ export default {
       ReStudentIDCard: "",
     };
     return {
-      size:'default',
+      size: "default",
       model: {
         checkbox: [],
       },
@@ -397,9 +458,9 @@ export default {
     this.$nextTick(() => {
       that.autoHeight();
     });
-    $(window).resize(()=>{
+    $(window).resize(() => {
       that.autoHeight();
-    })
+    });
   },
   created() {},
   computed: {
@@ -419,13 +480,20 @@ export default {
   },
 
   methods: {
+    ok(data) {
+      debugger;
+      Message.success("Clicked ok!");
+    },
+    cancel() {
+      Message.info("Clicked cancel!");
+    },
     _onChange() {},
     autoHeight() {
       this.elCss.leftHeight =
         $(window).height() -
         $("#a1").outerHeight(true) -
         $("#a2").outerHeight(true) -
-        120;
+        160;
     },
     batchOps() {
       alert("批量操作");
@@ -601,7 +669,7 @@ export default {
       }
     },
     datetimeFMT(data, index) {
-      return new DateFMT().datetimeFormate(data.UpdateTime);
+      return new DateFMTforaspnetmvc().datetimeFormate(data.UpdateTime);
     },
     setIndex(data, index) {
       return index + 1 + (this.pager.currentPage - 1) * this.pager.pageSize;

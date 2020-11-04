@@ -1,4 +1,4 @@
-export default class DateFMT {
+export default class DateFMTforaspnetmvc {
   constructor() { }
   Format(date, fmt) {
     var o = {
@@ -18,23 +18,14 @@ export default class DateFMT {
     return fmt;
   }
   dateFormate(input) {
-    let year = input.getFullYear();
-    let month = input.getMonth() + 1;
-    let day = input.getDay();
-    if (month >= 10) {
+    if (input) {
+      var d = eval('new ' + input.replace('/', '', 'g').replace('/', '', 'g'));
+      // eslint-disable-next-line no-undef
+      return Format(d, "yyyy-MM-dd");
+    } else {
+      return "";
     }
-    else {
-      month = "0" + month
-    }
-    if (day >= 10) {
-    }
-    else {
-      day = "0" + day;
-    }
-    return year + "-" + month + "-" + day;
   }
-
-
 
   getDateTime(input) {
     if (input) {
